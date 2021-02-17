@@ -9,6 +9,7 @@ module.exports.createServer = async () => {
       files: {
         relativeTo: Path.join(__dirname, 'assets'),
       },
+      cors: true,
     },
   });
   await server.register(require('./plugins'));

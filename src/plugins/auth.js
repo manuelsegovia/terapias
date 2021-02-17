@@ -2,10 +2,14 @@ const Bell = require('@hapi/bell');
 const authCookie = require('@hapi/cookie');
 
 const isSecure = process.env.NODE_ENV === 'production';
+
 exports.plugin = {
   name: 'authPlugin',
   version: '1.0.0',
   register: async (server, options) => {
+    const location = isSecure
+      ? 'https://terapiasmibuen.herokuapp.com/'
+      : server.info.uri;
     await server.register([authCookie, Bell]);
     server.auth.strategy('session', 'cookie', {
       cookie: {
@@ -20,10 +24,11 @@ exports.plugin = {
     server.auth.strategy('google', 'bell', {
       provider: 'google',
       password: 'cookie_encryption_password_secure',
-      isSecure: false,
+      isSecure,
       clientId: process.env.G_CLIENT,
       clientSecret: process.env.G_SECRET,
-      location: server.info.uri,
+      forceHttps: false,
+      location,
     });
     server.auth.default('session');
     server.route({
