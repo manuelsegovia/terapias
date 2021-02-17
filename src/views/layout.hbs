@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Reverent-Ninja</title>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo left"><img src="/logo.png" alt="" width="60" height="60"></a>
+      <ul class="right ">
+        {{#if isAuthenticated}}
+        <li><a href="/misterapias" class="waves-effect waves-light ">Mis Terapias</a></li>
+        <li><a href="/logout" class="waves-effect waves-light btn">Logout</a></li>
+        {{else}}
+        <li><a href="/bell/door" class="deep-orange accent-3 btn">G+ Login</a></li>
+        {{/if}}
+      </ul>
+    </div>
+  </nav>
+  {{{content}}}
+</body>
+
+</html>
