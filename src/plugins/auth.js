@@ -20,7 +20,7 @@ exports.plugin = {
     server.auth.strategy('google', 'bell', {
       provider: 'google',
       password: 'cookie_encryption_password_secure',
-      isSecure,
+      isSecure: false,
       clientId: process.env.G_CLIENT,
       clientSecret: process.env.G_SECRET,
       location: server.info.uri,
