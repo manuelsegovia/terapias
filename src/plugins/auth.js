@@ -2,6 +2,7 @@ const Bell = require('@hapi/bell');
 const authCookie = require('@hapi/cookie');
 
 const isSecure = process.env.NODE_ENV === 'production';
+const password = process.env.COOKIE_PWD;
 
 exports.plugin = {
   name: 'authPlugin',
@@ -15,15 +16,16 @@ exports.plugin = {
       cookie: {
         name: 'sid-google',
         path: '/',
-        password: 'password-should-be-32-characters',
+        password,
         isSecure,
+        isSameSite: 'Lax',
       },
       redirectTo: '/bell/door',
     });
     // Google bell
     server.auth.strategy('google', 'bell', {
       provider: 'google',
-      password: 'cookie_encryption_password_secure',
+      password,
       isSecure,
       clientId: process.env.G_CLIENT,
       clientSecret: process.env.G_SECRET,
