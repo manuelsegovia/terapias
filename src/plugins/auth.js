@@ -8,7 +8,7 @@ exports.plugin = {
   version: '1.0.0',
   register: async (server, options) => {
     const location = isSecure
-      ? 'https://terapiasmibuen.herokuapp.com/'
+      ? 'https://terapiasmibuen.herokuapp.com'
       : server.info.uri;
     await server.register([authCookie, Bell]);
     server.auth.strategy('session', 'cookie', {
